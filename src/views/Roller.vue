@@ -1,10 +1,17 @@
 <template>
-  <v-col cols="10">
-   <h2>Hello!</h2>
-  </v-col>
+  <v-container fluid>
+    <v-row
+      align="center"
+      justify="center">
+      <attacks/>
+    </v-row>
+  </v-container>
 </template>
 <script>
+import Attacks from '@/components/Attacks.vue';
+
 export default {
   name: 'Roller',
+  components: { Attacks },
 };
 </script>
