@@ -8,6 +8,7 @@
       <v-text-field
         label="Number of attacks"
         type="number"
+        v-model="attacksNumber"
         dense/>
       <v-select
         :items="toHit"
@@ -25,10 +26,12 @@
       <v-select
         :items="rerolls"
         label="Rerolls"
+        v-model="rerollsValue"
         dense/>
       <v-btn
         class="mt-4"
-        block>
+        block
+        @click="rollToHit">
         Roll
       </v-btn>
     </v-col>
@@ -86,11 +89,34 @@ export default {
       },
     ],
     rerolls: [
-      'No',
-      'Hit rolls of 1',
-      'Failed hit rolls',
+      {
+        text: 'No',
+        value: '0',
+      },
+      {
+        text: 'Hit rolls of 1',
+        value: '1',
+      }, {
+        text: 'Failed hit rolls',
+        value: 'miss',
+      },
     ],
+    attacksNumber: null,
+    rerollsValue: null,
   }),
+  methods: {
+    rollToHit() {
+      for (let i = 1; i <= this.attacksNumber; i += 1) {
+        const result = this.rollDice();
+
+        console.log(result);
+      }
+    },
+    // D6 dice
+    rollDice() {
+      return Math.ceil(Math.random() * 6);
+    },
+  },
 };
 </script>
 <style scoped>
