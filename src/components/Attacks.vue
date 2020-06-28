@@ -11,12 +11,14 @@
         v-model="attacksNumber"
         dense/>
       <v-select
-        :items="toHit"
+        :items="toHitOptions"
         label="To hit"
+        v-model="toHitValue"
         dense/>
       <v-select
-        :items="hitMod"
+        :items="hitModOptions"
         label="To hit modifier"
+        v-model="hitModValue"
         dense/>
       <v-select
         class="wrap"
@@ -41,22 +43,61 @@
 export default {
   name: 'Attacks',
   data: () => ({
-    toHit: [
-      '+2',
-      '+3',
-      '+4',
-      '+5',
-      '+6',
-      '+7',
+    toHitOptions: [
+      {
+        text: '+2',
+        value: '2',
+      },
+      {
+        text: '+3',
+        value: '3',
+      },
+      {
+        text: '+4',
+        value: '4',
+      },
+      {
+        text: '+5',
+        value: '5',
+      },
+      {
+        text: '+6',
+        value: '6',
+      },
+      {
+        text: '+7',
+        value: '7',
+      },
     ],
-    hitMod: [
-      '-3',
-      '-2',
-      '-1',
-      '0',
-      '1',
-      '2',
-      '3',
+    hitModOptions: [
+      {
+        text: '-3',
+        value: ['+', '3'],
+      },
+      {
+        text: '-2',
+        value: ['+', '2'],
+      },
+      {
+        text: '-1',
+        value: ['+', '1'],
+      },
+      {
+        text: '0',
+        value: ['+', '0'],
+      },
+      {
+        text: '+1',
+        value: ['-', '1'],
+      },
+      {
+        text: '+2',
+        value: ['-', '2'],
+      },
+      {
+        text: '+3',
+        value: ['-', '3'],
+      },
     ],
     hitOn6: [
       {
@@ -102,15 +143,37 @@ export default {
       },
     ],
     attacksNumber: null,
+    toHitValue: null,
+    hitModValue: null,
+    toHitAfterMod: null,
     rerollsValue: null,
   }),
   methods: {
     rollToHit() {
+      this.setToHitAfterMod();
       for (let i = 1; i <= this.attacksNumber; i += 1) {
         const result = this.rollDice();
 
-        console.log(result);
+        console.log('roll', result);
       }
+    },
+    setToHitAfterMod() {
+      let toHit = 0;
+      if (this.hitModValue === null) {
+        this.toHitAfterMod = this.hitModValue;
+        return;
+      }
+      // eslint-disable-next-line no-eval
+      toHit = eval(this.toHitValue + this.hitModValue[0] + this.hitModValue[1]);
+      if (toHit <= 1) {
+        this.toHitAfterMod = 2;
+        return;
+      }
+      if (toHit >= 7) {
+        this.toHitAfterMod = 7;
+        return;
+      }
+      this.toHitAfterMod = toHit;
     },
     // D6 dice
     rollDice() {
