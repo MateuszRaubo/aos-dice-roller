@@ -26,14 +26,14 @@
         label="On rolls of 6"
         dense/>
       <v-select
-        :items="rerolls"
+        :items="rerollsOptions"
         label="Rerolls"
         v-model="rerollsValue"
         dense/>
       <v-btn
         class="mt-4"
         block
-        @click="rollToHit">
+        @click="rollDices">
         Roll
       </v-btn>
     </v-col>
@@ -129,7 +129,7 @@ export default {
         value: 'am',
       },
     ],
-    rerolls: [
+    rerollsOptions: [
       {
         text: 'No',
         value: '0',
@@ -149,18 +149,14 @@ export default {
     rerollsValue: null,
   }),
   methods: {
-    rollToHit() {
+    rollDices() {
       this.setToHitAfterMod();
-      for (let i = 1; i <= this.attacksNumber; i += 1) {
-        const result = this.rollDice();
-
-        console.log('roll', result);
-      }
+      this.rollToHit();
     },
     setToHitAfterMod() {
       let toHit = 0;
       if (this.hitModValue === null) {
-        this.toHitAfterMod = this.hitModValue;
+        this.toHitAfterMod = this.toHitValue;
         return;
       }
       // eslint-disable-next-line no-eval
@@ -174,6 +170,16 @@ export default {
         return;
       }
       this.toHitAfterMod = toHit;
+    },
+    rollToHit() {
+      for (let i = 1; i <= this.attacksNumber; i += 1) {
+        let result = this.rollDice();
+        // reroll missed or 1
+        if ((result < this.toHitAfterMod && this.rerollsValue === 'miss')
+          || (result === 1 && this.rerollsValue === '1')) {
+          result = this.rollDice();
+        }
+      }
     },
     // D6 dice
     rollDice() {
