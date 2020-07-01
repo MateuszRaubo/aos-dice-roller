@@ -66,11 +66,11 @@ const state = {
     },
     {
       text: '1 extra hit',
-      value: '1e',
+      value: '1h',
     },
     {
       text: '2 extra hits',
-      value: '2e',
+      value: '2h',
     },
     {
       text: 'Auto wound',
@@ -82,7 +82,7 @@ const state = {
     },
     {
       text: 'Deal their damage as mortal wound',
-      value: 'am',
+      value: 'dm',
     },
   ],
   rerollsOptions: [

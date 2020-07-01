@@ -2,8 +2,6 @@
   <v-col cols="10">
     <h3 class="subtitle-1">Attacks</h3>
     <v-col cols="12"
-           sm="6"
-           md="3"
            class="px-0">
       <v-text-field
         label="Number of attacks"
@@ -11,22 +9,23 @@
         v-model="attacksNumber"
         dense/>
       <v-select
-        :items="toHitOptions"
+        :items="toHitOptionsProp"
         label="To hit"
         v-model="toHitValue"
         dense/>
       <v-select
-        :items="hitModOptions"
+        :items="hitModOptionsProp"
         label="To hit modifier"
         v-model="hitModValue"
         dense/>
       <v-select
         class="wrap"
-        :items="hitOn6"
+        :items="hitOn6Prop"
         label="On rolls of 6"
+        v-model="hitOn6Value"
         dense/>
       <v-select
-        :items="rerollsOptions"
+        :items="rerollsOptionsProp"
         label="Rerolls"
         v-model="rerollsValue"
         dense/>
@@ -42,15 +41,18 @@
 <script>
 export default {
   name: 'Attacks',
+  props: {
+    toHitOptionsProp: Array,
+    hitModOptionsProp: Array,
+    hitOn6Prop: Array,
+    rerollsOptionsProp: Array,
+  },
   data: () => ({
-    toHitOptions: [],
-    hitModOptions: [],
-    hitOn6: [],
-    rerollsOptions: [],
     attacksNumber: null,
     toHitValue: null,
     hitModValue: null,
     toHitAfterMod: null,
+    hitOn6Value: null,
     rerollsValue: null,
   }),
   methods: {
@@ -79,10 +81,12 @@ export default {
     rollToHit() {
       for (let i = 1; i <= this.attacksNumber; i += 1) {
         let result = this.rollDice();
+        console.log('roll', result);
         // reroll missed or 1
         if ((result < this.toHitAfterMod && this.rerollsValue === 'miss')
             || (result === 1 && this.rerollsValue === '1')) {
           result = this.rollDice();
+          console.log('reroll value', result);
         }
       }
     },
@@ -90,16 +94,9 @@ export default {
     rollDice() {
       return Math.ceil(Math.random() * 6);
     },
-    initData() {
-      this.toHitOptions = this.$store.state.toHitOptions;
-      this.hitModOptions = this.$store.state.hitModOptions;
-      this.hitOn6 = this.$store.state.hitOn6;
-      this.rerollsOptions = this.$store.state.rerollsOptions;
-    },
+
   },
-  created() {
-    this.initData();
-  },
+
 };
 </script>
 <style scoped>
