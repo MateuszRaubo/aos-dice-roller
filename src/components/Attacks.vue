@@ -54,9 +54,15 @@ export default {
     toHitAfterMod: null,
     hitOn6Value: null,
     rerollsValue: null,
+    hitsQuantity: 0,
+    woundsQuantity: 0,
+    mortalWoundsQuantity: 0,
   }),
   methods: {
     rollDices() {
+      this.hitsQuantity = 0;
+      this.woundsQuantity = 0;
+      this.mortalWoundsQuantity = 0;
       this.setToHitAfterMod();
       this.rollToHit();
     },
@@ -81,12 +87,20 @@ export default {
     rollToHit() {
       for (let i = 1; i <= this.attacksNumber; i += 1) {
         let result = this.rollDice();
-        console.log('roll', result);
+        let hit = false;
+        // todo: if toHitMod 7
         // reroll missed or 1
         if ((result < this.toHitAfterMod && this.rerollsValue === 'miss')
             || (result === 1 && this.rerollsValue === '1')) {
           result = this.rollDice();
-          console.log('reroll value', result);
+        }
+        if (result >= this.toHitAfterMod) {
+          hit = true;
+          this.hitsQuantity += 1;
+        }
+        // hit on 6 function starter based on action chose
+        if ((result === 6 && hit) && (this.hitOn6Value !== null || this.hitOn6Value !== '0')) {
+          this[this.hitOn6Value]();
         }
       }
     },
@@ -94,7 +108,11 @@ export default {
     rollDice() {
       return Math.ceil(Math.random() * 6);
     },
-
+    extraRoll() {
+      if (this.rollDice() >= this.toHitAfterMod) {
+        this.hitsQuantity += 1;
+      }
+    },
   },
 
 };

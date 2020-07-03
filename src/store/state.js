@@ -62,7 +62,7 @@ const state = {
     },
     {
       text: '1 extra hit roll',
-      value: '1r',
+      value: 'extraRoll',
     },
     {
       text: '1 extra hit',
@@ -98,6 +98,9 @@ const state = {
       value: 'miss',
     },
   ],
+  hits: 0,
+  wounds: 0,
+  mortalWounds: 0,
 };
 
 export default state;

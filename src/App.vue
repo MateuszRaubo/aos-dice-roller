@@ -22,7 +22,7 @@
   </v-app>
 </template>
 <script>
-import NavigationList from './components/NavigationList.vue';
+import NavigationList from '@/components/NavigationList.vue';
 
 export default {
   name: 'App',
