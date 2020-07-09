@@ -66,23 +66,23 @@ const state = {
     },
     {
       text: '1 extra hit',
-      value: '1h',
+      value: 'extraOneHit',
     },
     {
       text: '2 extra hits',
-      value: '2h',
+      value: 'extraTwoHits',
     },
     {
       text: 'Auto wound',
-      value: 'auto',
+      value: 'autoWound',
     },
     {
       text: 'Deal 1 mortal wound instead of normal wound',
-      value: '1m',
+      value: 'oneMortal',
     },
     {
       text: 'Deal their damage as mortal wound',
-      value: 'dm',
+      value: 'damageAsMortal',
     },
   ],
   rerollsOptions: [
@@ -101,6 +101,7 @@ const state = {
   hits: 0,
   wounds: 0,
   mortalWounds: 0,
+  weaponDamage: 3,
 };
 
 export default state;

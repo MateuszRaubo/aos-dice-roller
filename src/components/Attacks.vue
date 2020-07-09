@@ -99,7 +99,7 @@ export default {
           this.hitsQuantity += 1;
         }
         // hit on 6 function starter based on action chose
-        if ((result === 6 && hit) && (this.hitOn6Value !== null || this.hitOn6Value !== '0')) {
+        if ((result === 6 && hit) && (this.hitOn6Value !== null || this.hitOn6Value !== 'nothing')) {
           this[this.hitOn6Value]();
         }
       }
@@ -108,10 +108,26 @@ export default {
     rollDice() {
       return Math.ceil(Math.random() * 6);
     },
+    // hit on 6 actions
     extraRoll() {
       if (this.rollDice() >= this.toHitAfterMod) {
         this.hitsQuantity += 1;
       }
+    },
+    extraOneHit() {
+      this.hitsQuantity += 1;
+    },
+    extraTwoHits() {
+      this.hitsQuantity += 2;
+    },
+    autoWound() {
+      this.woundsQuantity += 1;
+    },
+    oneMortal() {
+      this.mortalWoundsQuantity += 1;
+    },
+    damageAsMortal() {
+      this.mortalWoundsQuantity += this.$store.state.weaponDamage;
     },
   },
 
