@@ -1,41 +1,35 @@
 <template>
   <v-col cols="10">
-    <h3 class="subtitle-1">Attacks</h3>
-    <v-col cols="12"
-           class="px-0">
-      <v-text-field
-        label="Number of attacks"
-        type="number"
-        v-model="attacksNumber"
-        dense/>
-      <v-select
-        :items="toHitOptionsProp"
-        label="To hit"
-        v-model="toHitValue"
-        dense/>
-      <v-select
-        :items="hitModOptionsProp"
-        label="To hit modifier"
-        v-model="hitModValue"
-        dense/>
-      <v-select
-        class="wrap"
-        :items="hitOn6Prop"
-        label="On rolls of 6"
-        v-model="hitOn6Value"
-        dense/>
-      <v-select
-        :items="rerollsOptionsProp"
-        label="Rerolls"
-        v-model="rerollsValue"
-        dense/>
-      <v-btn
-        class="mt-4"
-        block
-        @click="rollDices">
-        Roll
-      </v-btn>
-    </v-col>
+    <h3
+      class="subtitle-1 mb-4">
+      Attacks
+    </h3>
+    <v-text-field
+      label="Number of attacks"
+      type="number"
+      v-model="attacksNumber"
+      dense/>
+    <v-select
+      :items="toHitOptionsProp"
+      label="To hit"
+      v-model="toHitValue"
+      dense/>
+    <v-select
+      :items="hitModOptionsProp"
+      label="To hit modifier"
+      v-model="hitModValue"
+      dense/>
+    <v-select
+      class="wrap"
+      :items="hitOn6Prop"
+      label="On rolls of 6"
+      v-model="hitOn6Value"
+      dense/>
+    <v-select
+      :items="rerollsOptionsProp"
+      label="Rerolls"
+      v-model="rerollsValue"
+      dense/>
   </v-col>
 </template>
 <script>
@@ -99,7 +93,8 @@ export default {
           this.hitsQuantity += 1;
         }
         // hit on 6 function starter based on action chose
-        if ((result === 6 && hit) && (this.hitOn6Value !== null || this.hitOn6Value !== 'nothing')) {
+        if ((result === 6 && hit)
+          && (this.hitOn6Value != null || this.hitOn6Value === 'nothing')) {
           this[this.hitOn6Value]();
         }
       }

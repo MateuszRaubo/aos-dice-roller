@@ -7,7 +7,16 @@
         :toHitOptionsProp="toHitOptions"
         :hitModOptionsProp="hitModOptions"
         :hitOn6Prop="hitOn6"
-        :rerollsOptionsProp="rerollsOptions"/>
+        :rerollsOptionsProp="rerollsOptions"
+        ref="attacks"/>
+        <v-col
+          cols="10">
+          <v-btn
+            block
+            @click="roll">
+            Roll Dices
+          </v-btn>
+        </v-col>
     </v-row>
   </v-container>
 </template>
@@ -29,6 +38,9 @@ export default {
       this.hitModOptions = this.$store.state.hitModOptions;
       this.hitOn6 = this.$store.state.hitOn6;
       this.rerollsOptions = this.$store.state.rerollsOptions;
+    },
+    roll() {
+      this.$refs.attacks.rollDices();
     },
   },
   created() {
