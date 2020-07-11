@@ -93,8 +93,8 @@ export default {
           this.hitsQuantity += 1;
         }
         // hit on 6 function starter based on action chose
-        if ((result === 6 && hit)
-          && (this.hitOn6Value != null || this.hitOn6Value === 'nothing')) {
+        if (result === 6 && hit && this.hitOn6Value != null
+          && this.hitOn6Value !== 'nothing') {
           this[this.hitOn6Value]();
         }
       }
