@@ -2,7 +2,7 @@
   <v-col cols="10">
     <h3
       class="subtitle-1 mb-4">
-      Attacks
+      Attack
     </h3>
     <v-text-field
       label="Number of attacks"
@@ -34,7 +34,7 @@
 </template>
 <script>
 export default {
-  name: 'Attacks',
+  name: 'Hits',
   props: {
     toHitOptionsProp: Array,
     hitModOptionsProp: Array,
@@ -128,5 +128,3 @@ export default {
 
 };
 </script>
-<style scoped>
-</style>

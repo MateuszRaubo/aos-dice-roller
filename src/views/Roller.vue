@@ -3,12 +3,12 @@
     <v-row
       align="center"
       justify="center">
-      <attacks
+      <hits
         :toHitOptionsProp="toHitOptions"
         :hitModOptionsProp="hitModOptions"
         :hitOn6Prop="hitOn6"
         :rerollsOptionsProp="rerollsOptions"
-        ref="attacks"/>
+        ref="hits"/>
         <v-col
           cols="10">
           <v-btn
@@ -21,11 +21,11 @@
   </v-container>
 </template>
 <script>
-import Attacks from '@/components/Attacks.vue';
+import Hits from '@/components/Hits.vue';
 
 export default {
   name: 'Roller',
-  components: { Attacks },
+  components: { Hits },
   data: () => ({
     toHitOptions: [],
     hitModOptions: [],
@@ -40,7 +40,7 @@ export default {
       this.rerollsOptions = this.$store.state.rerollsOptions;
     },
     roll() {
-      this.$refs.attacks.rollDices();
+      this.$refs.hits.rollDices();
     },
   },
   created() {

@@ -58,7 +58,7 @@ const state = {
   hitOn6: [
     {
       text: 'Do nothing',
-      value: '0',
+      value: 'nothing',
     },
     {
       text: '1 extra hit roll',
