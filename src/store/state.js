@@ -102,6 +102,7 @@ const state = {
   wounds: 0,
   mortalWounds: 0,
   weaponDamage: 3,
+  damageAsWounds: 0,
 };
 
 export default state;

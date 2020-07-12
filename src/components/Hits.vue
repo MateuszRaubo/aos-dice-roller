@@ -51,14 +51,18 @@ export default {
     hitsQuantity: 0,
     woundsQuantity: 0,
     mortalWoundsQuantity: 0,
+    damageAsWoundsQuantity: 0,
   }),
   methods: {
     rollDices() {
       this.hitsQuantity = 0;
       this.woundsQuantity = 0;
       this.mortalWoundsQuantity = 0;
+      this.damageAsWoundsQuantity = 0;
       this.setToHitAfterMod();
       this.rollToHit();
+      this.commitData();
+      debugger;
     },
     setToHitAfterMod() {
       let toHit = 0;
@@ -103,6 +107,12 @@ export default {
     rollDice() {
       return Math.ceil(Math.random() * 6);
     },
+    commitData() {
+      this.$store.commit('setHits', this.hitsQuantity);
+      this.$store.commit('setWounds', this.woundsQuantity);
+      this.$store.commit('setMortalWounds', this.mortalWoundsQuantity);
+      this.$store.commit('setDamageAsWounds', this.damageAsWoundsQuantity);
+    },
     // hit on 6 actions
     extraRoll() {
       if (this.rollDice() >= this.toHitAfterMod) {
@@ -122,7 +132,7 @@ export default {
       this.mortalWoundsQuantity += 1;
     },
     damageAsMortal() {
-      this.mortalWoundsQuantity += this.$store.state.weaponDamage;
+      this.damageAsWoundsQuantity += 1;
     },
   },
 
