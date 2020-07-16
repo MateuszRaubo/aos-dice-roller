@@ -14,13 +14,7 @@
       <v-toolbar-title>AoS Dice Roller</v-toolbar-title>
     </v-app-bar>
     <v-main>
-      <v-container fluid>
-        <v-row
-          align="center"
-          justify="center">
-          <router-view/>
-        </v-row>
-      </v-container>
+      <router-view/>
     </v-main>
     <v-footer>
       <span class="px-4">&copy; {{ new Date().getFullYear() }} Mateusz Raubo</span>
@@ -28,7 +22,7 @@
   </v-app>
 </template>
 <script>
-import NavigationList from './components/NavigationList.vue';
+import NavigationList from '@/components/NavigationList.vue';
 
 export default {
   name: 'App',
