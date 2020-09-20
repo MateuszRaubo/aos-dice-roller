@@ -22,12 +22,12 @@
     <v-select
       class="wrap"
       :items="hitOn6Prop"
-      label="On rolls of 6"
+      label="On hit rolls of 6"
       v-model="hitOn6Value"
       dense/>
     <v-select
       :items="rerollsOptionsProp"
-      label="Rerolls"
+      label="To hit rerolls"
       v-model="rerollsValue"
       dense/>
   </v-col>
@@ -62,7 +62,6 @@ export default {
       this.setToHitAfterMod();
       this.rollToHit();
       this.commitData();
-      debugger;
     },
     setToHitAfterMod() {
       let toHit = 0;
@@ -87,6 +86,7 @@ export default {
         let result = this.rollDice();
         let hit = false;
         // todo: if toHitMod 7
+        // todo: check if rerolls are made before hit mods
         // reroll missed or 1
         if ((result < this.toHitAfterMod && this.rerollsValue === 'miss')
             || (result === 1 && this.rerollsValue === '1')) {

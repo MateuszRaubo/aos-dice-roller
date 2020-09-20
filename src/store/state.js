@@ -85,7 +85,7 @@ const state = {
       value: 'damageAsMortal',
     },
   ],
-  rerollsOptions: [
+  hitRerollsOptions: [
     {
       text: 'No',
       value: '0',
@@ -96,6 +96,149 @@ const state = {
     }, {
       text: 'Failed hit rolls',
       value: 'miss',
+    },
+  ],
+  toWoundOptions: [
+    {
+      text: '+2',
+      value: '2',
+    },
+    {
+      text: '+3',
+      value: '3',
+    },
+    {
+      text: '+4',
+      value: '4',
+    },
+    {
+      text: '+5',
+      value: '5',
+    },
+    {
+      text: '+6',
+      value: '6',
+    },
+  ],
+  woundModOptions: [
+    {
+      text: '-3',
+      value: ['+', '3'],
+    },
+    {
+      text: '-2',
+      value: ['+', '2'],
+    },
+    {
+      text: '-1',
+      value: ['+', '1'],
+    },
+    {
+      text: '0',
+      value: ['+', '0'],
+    },
+    {
+      text: '+1',
+      value: ['-', '1'],
+    },
+    {
+      text: '+2',
+      value: ['-', '2'],
+    },
+    {
+      text: '+3',
+      value: ['-', '3'],
+    },
+  ],
+  woundOn6Options: [
+    {
+      text: 'Do nothing',
+      value: 'nothing',
+    },
+    {
+      text: 'Are resolved with -1 to Rend',
+      value: '',
+    },
+    {
+      text: 'Are resolved with -2 to Rend',
+      value: 'extraOneHit',
+    },
+    {
+      text: 'Are resolved with -3 to Rend',
+      value: 'extraTwoHits',
+    },
+    {
+      text: 'Auto wound',
+      value: 'autoWound',
+    },
+    {
+      text: 'Deal 1 mortal wound instead of normal wound',
+      value: 'oneMortal',
+    },
+    {
+      text: 'Deal their damage as mortal wound',
+      value: 'damageAsMortal',
+    },
+  ],
+  woundRerollOptions: [
+    {
+      text: 'No',
+      value: '0',
+    },
+    {
+      text: 'Wound rolls of 1',
+      value: '1',
+    }, {
+      text: 'Failed wound rolls',
+      value: 'miss',
+    },
+  ],
+  rendOptions: [
+    {
+      text: '-1',
+      value: ['+', '1'],
+    },
+    {
+      text: '-2',
+      value: ['+', '2'],
+    },
+    {
+      text: '-3',
+      value: ['+', '3'],
+    },
+  ],
+  weaponDamageOptions: [
+    {
+      text: '1',
+      value: 1,
+    },
+    {
+      text: '2',
+      value: 2,
+    },
+    {
+      text: '3',
+      value: 3,
+    },
+    {
+      text: '4',
+      value: 4,
+    },
+    {
+      text: '5',
+      value: 5,
+    },
+    {
+      text: '6',
+      value: 6,
+    },
+    {
+      text: 'D3',
+      value: 'D3',
+    },
+    {
+      text: 'D6',
+      value: 'D6',
     },
   ],
   hits: 0,
